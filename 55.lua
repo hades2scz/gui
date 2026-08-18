@@ -1443,9 +1443,9 @@ local Library do
                         Image = Data.Icon,
                         ImageColor3 = FromRGB(128, 128, 128),
                         BackgroundTransparency = 1,
-                        Position = UDim2New(0.5, 0, 0.5, 0),
+                        Position = UDim2New(0.5, 0, 0.35, 0),
                         AnchorPoint = Vector2New(0.5, 0.5),
-                        Size = UDim2New(0, 28, 0, 28),
+                        Size = UDim2New(0, 85, 0, 85),
                         BorderSizePixel = 0,
                         BackgroundColor3 = FromRGB(255, 255, 255),
                         ScaleType = Enum.ScaleType.Fit,
@@ -1456,7 +1456,7 @@ local Library do
                         Parent = Items["Inactive"].Instance,
                         Name = "\0",
                         AnchorPoint = Vector2New(0.5, 0.5),
-                        Position = UDim2New(0.5, 0, 0.5, 0),
+                        Position = UDim2New(0.5, 0, 0.35, 0),
                         Size = UDim2New(0, 0, 0, 0),
                         BorderSizePixel = 0,
                         BackgroundColor3 = FromRGB(210, 180, 80),
@@ -1613,7 +1613,7 @@ local Library do
                     end
                     if Items["Icon"] then
                         Items["Icon"]:ChangeItemTheme({ImageColor3 = "Accent"})
-                        Items["Icon"]:Tween(nil, {ImageColor3 = Library.Theme.Accent, Size = UDim2New(0, 32, 0, 32)})
+                        Items["Icon"]:Tween(nil, {ImageColor3 = Library.Theme.Accent, Size = UDim2New(0, 85, 0, 85)})
                     end
                     if Items["Text"] then
                         Items["Text"]:Tween(nil, {TextColor3 = FromRGB(240, 240, 240), Position = UDim2New(0, 8, 0.5, 0)})
@@ -1630,7 +1630,7 @@ local Library do
                     end
                     if Items["Icon"] then
                         Items["Icon"]:ChangeItemTheme({ImageColor3 = "Text"})
-                        Items["Icon"]:Tween(nil, {ImageColor3 = Library.Theme.Text, Size = UDim2New(0, 28, 0, 28)})
+                        Items["Icon"]:Tween(nil, {ImageColor3 = Library.Theme.Text, Size = UDim2New(0, 85, 0, 85)})
                     end
                     if Items["Text"] then
                         Items["Text"]:Tween(nil, {TextColor3 = FromRGB(140, 140, 140), Position = UDim2New(0, 8, 0.5, 0)})
@@ -2858,10 +2858,10 @@ local Library do
                             itemCount = itemCount + 1
                         end
                     end
-                    local maxItemsToShow = math.min(itemCount, 5)
-                    local itemHeight = 15 + 3 -- item height + padding
-                    local paddingTotal = 10 -- top + bottom padding
-                    local menuOffset = Data.ShowFavorites and 22 + 5 or 0
+                    local maxItemsToShow = math.min(itemCount, 8)
+                    local itemHeight = 18 + 3 -- item height + padding
+                    local paddingTotal = 14 -- top + bottom padding
+                    local menuOffset = Data.ShowFavorites and 26 + 5 or 0
                     local calculatedHeight = (maxItemsToShow * itemHeight) + paddingTotal + menuOffset
                     
                     Items["OptionHolder"].Instance.Visible = true
@@ -2995,7 +2995,7 @@ local Library do
                     BackgroundTransparency = 1,
                     BorderColor3 = FromRGB(0, 0, 0),
                     BorderSizePixel = 0,
-                    Size = UDim2New(1, 0, 0, 16),
+                    Size = UDim2New(1, 0, 0, 18),
                     ZIndex = 5,
                     BackgroundColor3 = FromRGB(255, 255, 255)
                 })
@@ -6505,7 +6505,7 @@ local Library do
         return NewKeybind
     end
 
-    Library.Sections.Button = function(self)
+    Library.Sections.Button = function(self, Name, Callback)
         local Button = {
             Window = self.Window,
             Page = self.Page,
@@ -6516,6 +6516,11 @@ local Library do
             Parent = Button.Section.Items["Content"],
             Page = Button.Page
         })
+        
+        -- If Name and Callback are provided, add the button directly
+        if Name and Callback then
+            NewButton:Add(Name, Callback)
+        end
 
         return NewButton
     end
