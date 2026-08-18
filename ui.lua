@@ -1825,16 +1825,26 @@ local Library do
                     if Items["Icon"] then
                         Items["Icon"]:Tween(nil, {ImageColor3 = Library.Theme.Accent})
                     end
+                    -- Show yellow glow on hover for inactive tabs
+                    if Items["IconGlow"] then
+                        Items["IconGlow"]:Tween(nil, {Size = UDim2New(0, 100, 0, 100), BackgroundTransparency = 0.65})
+                    end
                 end
             end)
 
             Items["Inactive"]:OnHoverLeave(function()
                 if not Page.Active and Items["Inactive"] then
                     if Items["Text"] then
-                        Items["Text"]:Tween(nil, {TextColor3 = FromRGB(140, 140, 140)})
+                        Items["Text"]:ChangeItemTheme({TextColor3 = "Text"})
+                        Items["Text"]:Tween(nil, {TextColor3 = Library.Theme.Text})
                     end
                     if Items["Icon"] then
-                        Items["Icon"]:Tween(nil, {ImageColor3 = FromRGB(128, 128, 128)})
+                        Items["Icon"]:ChangeItemTheme({ImageColor3 = "Text"})
+                        Items["Icon"]:Tween(nil, {ImageColor3 = Library.Theme.Text})
+                    end
+                    -- Hide yellow glow when mouse leaves
+                    if Items["IconGlow"] then
+                        Items["IconGlow"]:Tween(nil, {Size = UDim2New(0, 0, 0, 0), BackgroundTransparency = 1})
                     end
                 end
             end)
