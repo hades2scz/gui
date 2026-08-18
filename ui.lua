@@ -1831,10 +1831,10 @@ local Library do
             Items["Inactive"]:OnHoverLeave(function()
                 if not Page.Active and Items["Inactive"] then
                     if Items["Text"] then
-                        Items["Text"]:Tween(nil, {TextColor3 = Library.Theme.Text})
+                        Items["Text"]:Tween(nil, {TextColor3 = FromRGB(140, 140, 140)})
                     end
                     if Items["Icon"] then
-                        Items["Icon"]:Tween(nil, {ImageColor3 = Library.Theme.Text})
+                        Items["Icon"]:Tween(nil, {ImageColor3 = FromRGB(128, 128, 128)})
                     end
                 end
             end)
