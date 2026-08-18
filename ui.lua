@@ -269,110 +269,10 @@ local Library do
             ["Text Stroke"] = FromRGB(0, 0, 0),
             ["Placeholder Text"] = FromRGB(150, 150, 150),
             ["Accent"] = FromRGB(210, 180, 80)
-        },
-        ["ice"] = {
-            ["Background"] = FromRGB(15, 22, 30),
-            ["Border"] = FromRGB(25, 35, 50),
-            ["Inline"] = FromRGB(18, 28, 40),
-            ["Hovered Element"] = FromRGB(22, 35, 55),
-            ["Page Background"] = FromRGB(12, 18, 28),
-            ["Outline"] = FromRGB(35, 50, 70),
-            ["Element"] = FromRGB(20, 30, 45),
-            ["Gradient"] = FromRGB(220, 240, 255),
-            ["Text"] = FromRGB(230, 245, 255),
-            ["Text Stroke"] = FromRGB(0, 10, 20),
-            ["Placeholder Text"] = FromRGB(140, 170, 200),
-            ["Accent"] = FromRGB(100, 180, 255)
-        },
-        ["valedo"] = {
-            ["Background"] = FromRGB(20, 18, 25),
-            ["Border"] = FromRGB(35, 30, 45),
-            ["Inline"] = FromRGB(25, 22, 32),
-            ["Hovered Element"] = FromRGB(32, 28, 42),
-            ["Page Background"] = FromRGB(16, 14, 22),
-            ["Outline"] = FromRGB(50, 42, 65),
-            ["Element"] = FromRGB(28, 24, 36),
-            ["Gradient"] = FromRGB(255, 230, 255),
-            ["Text"] = FromRGB(245, 235, 255),
-            ["Text Stroke"] = FromRGB(10, 5, 15),
-            ["Placeholder Text"] = FromRGB(160, 145, 180),
-            ["Accent"] = FromRGB(180, 100, 255)
-        },
-        ["classic"] = {
-            ["Background"] = FromRGB(25, 25, 25),
-            ["Border"] = FromRGB(40, 40, 40),
-            ["Inline"] = FromRGB(30, 30, 30),
-            ["Hovered Element"] = FromRGB(38, 38, 38),
-            ["Page Background"] = FromRGB(22, 22, 22),
-            ["Outline"] = FromRGB(55, 55, 55),
-            ["Element"] = FromRGB(32, 32, 32),
-            ["Gradient"] = FromRGB(255, 255, 255),
-            ["Text"] = FromRGB(250, 250, 250),
-            ["Text Stroke"] = FromRGB(0, 0, 0),
-            ["Placeholder Text"] = FromRGB(160, 160, 160),
-            ["Accent"] = FromRGB(255, 215, 0)
-        },
-        ["sunset"] = {
-            ["Background"] = FromRGB(28, 18, 15),
-            ["Border"] = FromRGB(45, 28, 22),
-            ["Inline"] = FromRGB(32, 20, 18),
-            ["Hovered Element"] = FromRGB(42, 26, 22),
-            ["Page Background"] = FromRGB(24, 14, 12),
-            ["Outline"] = FromRGB(60, 38, 30),
-            ["Element"] = FromRGB(36, 22, 18),
-            ["Gradient"] = FromRGB(255, 220, 200),
-            ["Text"] = FromRGB(255, 240, 230),
-            ["Text Stroke"] = FromRGB(15, 5, 0),
-            ["Placeholder Text"] = FromRGB(180, 140, 120),
-            ["Accent"] = FromRGB(255, 120, 50)
-        },
-        ["moonshine"] = {
-            ["Background"] = FromRGB(12, 15, 22),
-            ["Border"] = FromRGB(22, 28, 40),
-            ["Inline"] = FromRGB(16, 20, 28),
-            ["Hovered Element"] = FromRGB(22, 28, 38),
-            ["Page Background"] = FromRGB(10, 12, 18),
-            ["Outline"] = FromRGB(32, 40, 55),
-            ["Element"] = FromRGB(18, 22, 32),
-            ["Gradient"] = FromRGB(200, 220, 255),
-            ["Text"] = FromRGB(220, 235, 255),
-            ["Text Stroke"] = FromRGB(0, 5, 15),
-            ["Placeholder Text"] = FromRGB(130, 150, 180),
-            ["Accent"] = FromRGB(150, 200, 255)
-        },
-        ["ermoa"] = {
-            ["Background"] = FromRGB(15, 20, 18),
-            ["Border"] = FromRGB(25, 35, 30),
-            ["Inline"] = FromRGB(18, 25, 22),
-            ["Hovered Element"] = FromRGB(24, 34, 28),
-            ["Page Background"] = FromRGB(12, 16, 14),
-            ["Outline"] = FromRGB(35, 48, 40),
-            ["Element"] = FromRGB(22, 30, 26),
-            ["Gradient"] = FromRGB(230, 255, 240),
-            ["Text"] = FromRGB(235, 255, 245),
-            ["Text Stroke"] = FromRGB(0, 10, 5),
-            ["Placeholder Text"] = FromRGB(140, 170, 155),
-            ["Accent"] = FromRGB(80, 220, 140)
-        },
-        ["blood"] = {
-            ["Background"] = FromRGB(22, 12, 12),
-            ["Border"] = FromRGB(40, 22, 22),
-            ["Inline"] = FromRGB(28, 15, 15),
-            ["Hovered Element"] = FromRGB(36, 20, 20),
-            ["Page Background"] = FromRGB(18, 10, 10),
-            ["Outline"] = FromRGB(55, 30, 30),
-            ["Element"] = FromRGB(32, 18, 18),
-            ["Gradient"] = FromRGB(255, 200, 200),
-            ["Text"] = FromRGB(255, 230, 230),
-            ["Text Stroke"] = FromRGB(10, 0, 0),
-            ["Placeholder Text"] = FromRGB(170, 120, 120),
-            ["Accent"] = FromRGB(220, 50, 50)
         }
     }
 
     Library.Theme = TableClone(Themes["Preset"])
-    Library.Themes = Themes
-    Library.CurrentThemeName = "Preset"
 
     -- Folders
     for Index, Value in Library.Folders do 
@@ -1257,40 +1157,6 @@ local Library do
         end
     end
 
-    Library.ApplyThemeByName = function(self, ThemeName)
-        ThemeName = StringLower(tostring(ThemeName or "preset"))
-        
-        local ThemeData = nil
-        for Name, Data in pairs(self.Themes) do
-            if StringLower(Name) == ThemeName then
-                ThemeData = Data
-                ThemeName = Name
-                break
-            end
-        end
-        
-        if not ThemeData then
-            return false
-        end
-        
-        self.CurrentThemeName = ThemeName
-        
-        for Key, Color in pairs(ThemeData) do
-            self:ChangeTheme(Key, Color)
-        end
-        
-        return true
-    end
-
-    Library.GetThemeList = function(self)
-        local List = {}
-        for Name, _ in pairs(self.Themes) do
-            table.insert(List, Name)
-        end
-        table.sort(List)
-        return List
-    end
-
     Library.GetThemeFiles = function(self)
         if not isfolder(self.Folders.Themes) then
             makefolder(self.Folders.Themes)
@@ -1820,14 +1686,10 @@ local Library do
             Items["Inactive"]:OnHover(function()
                 if not Page.Active and Items["Inactive"] then
                     if Items["Text"] then
-                        Items["Text"]:Tween(nil, {TextColor3 = Library.Theme.Accent})
+                        Items["Text"]:Tween(nil, {TextColor3 = FromRGB(220, 220, 220)})
                     end
                     if Items["Icon"] then
-                        Items["Icon"]:Tween(nil, {ImageColor3 = Library.Theme.Accent})
-                    end
-                    -- Show yellow glow on hover for inactive tabs
-                    if Items["IconGlow"] then
-                        Items["IconGlow"]:Tween(nil, {Size = UDim2New(0, 100, 0, 100), BackgroundTransparency = 0.65})
+                        Items["Icon"]:Tween(nil, {ImageColor3 = FromRGB(220, 220, 220)})
                     end
                 end
             end)
@@ -1835,16 +1697,10 @@ local Library do
             Items["Inactive"]:OnHoverLeave(function()
                 if not Page.Active and Items["Inactive"] then
                     if Items["Text"] then
-                        Items["Text"]:ChangeItemTheme({TextColor3 = "Text"})
-                        Items["Text"]:Tween(nil, {TextColor3 = Library.Theme.Text})
+                        Items["Text"]:Tween(nil, {TextColor3 = FromRGB(140, 140, 140)})
                     end
                     if Items["Icon"] then
-                        Items["Icon"]:ChangeItemTheme({ImageColor3 = "Text"})
-                        Items["Icon"]:Tween(nil, {ImageColor3 = Library.Theme.Text})
-                    end
-                    -- Hide yellow glow when mouse leaves
-                    if Items["IconGlow"] then
-                        Items["IconGlow"]:Tween(nil, {Size = UDim2New(0, 0, 0, 0), BackgroundTransparency = 1})
+                        Items["Icon"]:Tween(nil, {ImageColor3 = FromRGB(128, 128, 128)})
                     end
                 end
             end)
@@ -2142,7 +1998,7 @@ local Library do
                     Text = "",
                     AutoButtonColor = false,
                     BackgroundTransparency = 1,
-                    Size = UDim2New(1, 0, 0, 24),
+                    Size = UDim2New(1, 0, 0, 18),
                     BorderSizePixel = 0,
                     TextSize = 14,
                     BackgroundColor3 = FromRGB(255, 255, 255)
@@ -2152,9 +2008,9 @@ local Library do
                     Parent = Items["Toggle"].Instance,
                     Name = "\0",
                     AnchorPoint = Vector2New(0, 0.5),
-                    Position = UDim2New(0, 4, 0.5, 0),
+                    Position = UDim2New(0, 2, 0.5, 0),
                     BorderColor3 = FromRGB(12, 12, 12),
-                    Size = UDim2New(0, 14, 0, 14),
+                    Size = UDim2New(0, 10, 0, 10),
                     BorderSizePixel = 2,
                     BackgroundColor3 = FromRGB(30, 36, 31)
                 })  Items["Indicator"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
@@ -2170,16 +2026,16 @@ local Library do
                 Instances:Create("UIGradient", {
                     Parent = Items["Indicator"].Instance,
                     Name = "\0",
-                    Rotation = 90,
-                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, FromRGB(245, 245, 245)), RGBSequenceKeypoint(1, FromRGB(220, 220, 220))}
+                    Rotation = -165,
+                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(208, 208, 208))}
                 }):AddToTheme({Color = function()
-                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, Library.Theme.Gradient), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
+                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
                 end})
 
                 Items["Check"] = Instances:Create("ImageLabel", {
                     Parent = Items["Indicator"].Instance,
                     Name = "\0",
-                    ImageColor3 = FromRGB(255, 255, 255),
+                    ImageColor3 = FromRGB(0, 0, 0),
                     ScaleType = Enum.ScaleType.Fit,
                     ImageTransparency = 1,
                     BorderColor3 = FromRGB(0, 0, 0),
@@ -2187,7 +2043,7 @@ local Library do
                     Image = "rbxassetid://108016671469439",
                     BackgroundTransparency = 1,
                     Position = UDim2New(0.5, 0, 0.5, 0),
-                    Size = UDim2New(0.8, 0, 0.8, 0),
+                    Size = UDim2New(1, 2, 1, 2),
                     BorderSizePixel = 0,
                     BackgroundColor3 = FromRGB(255, 255, 255)
                 })
@@ -2199,14 +2055,14 @@ local Library do
                     TextColor3 = FromRGB(235, 235, 235),
                     BorderColor3 = FromRGB(0, 0, 0),
                     Text = Data.Name,
-                    Size = UDim2New(0, 0, 0, 16),
+                    Size = UDim2New(0, 0, 0, 14),
                     AnchorPoint = Vector2New(0, 0.5),
-                    Position = UDim2New(0, 26, 0.5, 0),
+                    Position = UDim2New(0, 22, 0.5, 0),
                     BackgroundTransparency = 1,
                     TextXAlignment = Enum.TextXAlignment.Left,
                     BorderSizePixel = 0,
                     AutomaticSize = Enum.AutomaticSize.X,
-                    TextSize = 11,
+                    TextSize = 10,
                     BackgroundColor3 = FromRGB(255, 255, 255)
                 })  Items["Text"]:AddToTheme({TextColor3 = "Text"})
 
@@ -2385,10 +2241,10 @@ local Library do
                     Instances:Create("UIGradient", {
                         Parent = SubItems["NewButton"].Instance,
                         Name = "\0",
-                        Rotation = 90,
-                        Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, FromRGB(245, 245, 245)), RGBSequenceKeypoint(1, FromRGB(220, 220, 220))}
+                        Rotation = -165,
+                        Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(208, 208, 208))}
                     }):AddToTheme({Color = function()
-                        return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, Library.Theme.Gradient), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
+                        return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
                     end})
 
                     Instances:Create("UIStroke", {
@@ -2409,6 +2265,8 @@ local Library do
                         BackgroundTransparency = 1,
                         Size = UDim2New(1, 0, 1, 0),
                         BorderSizePixel = 0,
+                        TextXAlignment = Enum.TextXAlignment.Center,
+                        TextYAlignment = Enum.TextYAlignment.Center,
                         TextSize = 9,
                         BackgroundColor3 = FromRGB(255, 255, 255)
                     })  SubItems["Text"]:AddToTheme({TextColor3 = "Text"})
@@ -2764,7 +2622,7 @@ local Library do
                     Name = "\0",
                     BackgroundTransparency = 1,
                     BorderColor3 = FromRGB(0, 0, 0),
-                    Size = UDim2New(1, 0, 0, 48),
+                    Size = UDim2New(1, 0, 0, 40),
                     BorderSizePixel = 0,
                     BackgroundColor3 = FromRGB(255, 255, 255)
                 })
@@ -2794,7 +2652,7 @@ local Library do
                     AnchorPoint = Vector2New(0, 1),
                     Position = UDim2New(0, 0, 1, 0),
                     BorderColor3 = FromRGB(12, 12, 12),
-                    Size = UDim2New(1, 0, 0, 26),
+                    Size = UDim2New(1, 0, 0, 20),
                     BorderSizePixel = 2,
                     BackgroundColor3 = FromRGB(30, 36, 31)
                 })  Items["RealDropdown"]:AddToTheme({BackgroundColor3 = "Element", BorderColor3 = "Border"})
@@ -2802,10 +2660,10 @@ local Library do
                 Instances:Create("UIGradient", {
                     Parent = Items["RealDropdown"].Instance,
                     Name = "\0",
-                    Rotation = 90,
-                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, FromRGB(245, 245, 245)), RGBSequenceKeypoint(1, FromRGB(220, 220, 220))}
+                    Rotation = -165,
+                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(208, 208, 208))}
                 }):AddToTheme({Color = function()
-                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, Library.Theme.Gradient), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
+                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
                 end})
 
                 Instances:Create("UIStroke", {
@@ -3000,10 +2858,10 @@ local Library do
                             itemCount = itemCount + 1
                         end
                     end
-                    local maxItemsToShow = math.min(itemCount, 5)
-                    local itemHeight = 15 + 3 -- item height + padding
-                    local paddingTotal = 10 -- top + bottom padding
-                    local menuOffset = Data.ShowFavorites and 22 + 5 or 0
+                    local maxItemsToShow = math.min(itemCount, 8)
+                    local itemHeight = 18 + 3 -- item height + padding
+                    local paddingTotal = 14 -- top + bottom padding
+                    local menuOffset = Data.ShowFavorites and 26 + 5 or 0
                     local calculatedHeight = (maxItemsToShow * itemHeight) + paddingTotal + menuOffset
                     
                     Items["OptionHolder"].Instance.Visible = true
@@ -3137,7 +2995,7 @@ local Library do
                     BackgroundTransparency = 1,
                     BorderColor3 = FromRGB(0, 0, 0),
                     BorderSizePixel = 0,
-                    Size = UDim2New(1, 0, 0, 16),
+                    Size = UDim2New(1, 0, 0, 18),
                     ZIndex = 5,
                     BackgroundColor3 = FromRGB(255, 255, 255)
                 })
@@ -5061,10 +4919,10 @@ local Library do
                 Instances:Create("UIGradient", {
                     Parent = Items["Background"].Instance,
                     Name = "\0",
-                    Rotation = 90,
-                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, FromRGB(245, 245, 245)), RGBSequenceKeypoint(1, FromRGB(220, 220, 220))}
+                    Rotation = -165,
+                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(208, 208, 208))}
                 }):AddToTheme({Color = function()
-                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, Library.Theme.Gradient), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
+                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
                 end})
 
                 Instances:Create("UIStroke", {
@@ -5257,10 +5115,10 @@ local Library do
                 Instances:Create("UIGradient", {
                     Parent = Items["RealListbox"].Instance,
                     Name = "\0",
-                    Rotation = 90,
-                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, FromRGB(245, 245, 245)), RGBSequenceKeypoint(1, FromRGB(220, 220, 220))}
+                    Rotation = -165,
+                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(208, 208, 208))}
                 }):AddToTheme({Color = function()
-                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, Library.Theme.Gradient), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
+                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
                 end})
 
                 Items["List"] = Instances:Create("ScrollingFrame", {
@@ -5775,8 +5633,8 @@ local Library do
             Parent = Library.Holder,
             Draggable = true,
             Resizeable = true,
-            AnchorPoint = Vector2New(0, 0),
-            Position = UDim2New(0, Camera.ViewportSize.X / 4, 0, Camera.ViewportSize.Y / 4),
+            AnchorPoint = Vector2New(0.5, 0.5),
+            Position = UDim2New(0.5, 0, 0.5, 0),
             Size = Window.Size
         }) do
             Items["MainFrame"] = Items["Window"]
@@ -6647,7 +6505,7 @@ local Library do
         return NewKeybind
     end
 
-    Library.Sections.Button = function(self)
+    Library.Sections.Button = function(self, Name, Callback)
         local Button = {
             Window = self.Window,
             Page = self.Page,
@@ -6658,6 +6516,11 @@ local Library do
             Parent = Button.Section.Items["Content"],
             Page = Button.Page
         })
+        
+        -- If Name and Callback are provided, add the button directly
+        if Name and Callback then
+            NewButton:Add(Name, Callback)
+        end
 
         return NewButton
     end
@@ -7315,44 +7178,17 @@ local Library do
 
             local ThemeSection = SettingsPage:Section({Name = "Theme", Side = 1}) do
                 local ThemeNameValue = "CustomTheme"
-                
-                -- Built-in themes list
-                local BuiltInThemes = Library:GetThemeList()
                 local SavedThemes = Library:GetThemeFiles()
-                
-                -- Combine built-in and saved themes (built-in first)
-                local AllThemes = {}
-                for _, name in ipairs(BuiltInThemes) do
-                    table.insert(AllThemes, name)
-                end
-                for _, name in ipairs(SavedThemes) do
-                    if not TableFind(AllThemes, name) then
-                        table.insert(AllThemes, name)
-                    end
-                end
-                
                 local ThemeDropdown = ThemeSection:Dropdown({
                     Name = "Themes",
                     Flag = "ThemePreset",
-                    Items = AllThemes,
+                    Items = SavedThemes,
                     Default = "Preset",
                     Callback = function(Value)
-                        if not Value or Value == "" then return end
-                        
-                        -- Check if it's a built-in theme
-                        local isBuiltIn = false
-                        for _, name in ipairs(BuiltInThemes) do
-                            if name == Value then
-                                isBuiltIn = true
-                                break
-                            end
-                        end
-                        
-                        if isBuiltIn then
-                            Library:ApplyThemeByName(Value)
-                            Library:Notify("Applied theme: " .. Value, 1.5)
-                        else
+                        if Value and Value ~= "" and Value ~= "Preset" then
                             Library:ImportTheme(Value)
+                        elseif Value == "Preset" then
+                            Library:ImportTheme("Preset")
                         end
                     end
                 })
