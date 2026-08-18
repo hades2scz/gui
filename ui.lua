@@ -1820,10 +1820,10 @@ local Library do
             Items["Inactive"]:OnHover(function()
                 if not Page.Active and Items["Inactive"] then
                     if Items["Text"] then
-                        Items["Text"]:Tween(nil, {TextColor3 = FromRGB(220, 220, 220)})
+                        Items["Text"]:Tween(nil, {TextColor3 = Library.Theme.Accent})
                     end
                     if Items["Icon"] then
-                        Items["Icon"]:Tween(nil, {ImageColor3 = FromRGB(220, 220, 220)})
+                        Items["Icon"]:Tween(nil, {ImageColor3 = Library.Theme.Accent})
                     end
                 end
             end)
@@ -1831,10 +1831,10 @@ local Library do
             Items["Inactive"]:OnHoverLeave(function()
                 if not Page.Active and Items["Inactive"] then
                     if Items["Text"] then
-                        Items["Text"]:Tween(nil, {TextColor3 = FromRGB(140, 140, 140)})
+                        Items["Text"]:Tween(nil, {TextColor3 = Library.Theme.Text})
                     end
                     if Items["Icon"] then
-                        Items["Icon"]:Tween(nil, {ImageColor3 = FromRGB(128, 128, 128)})
+                        Items["Icon"]:Tween(nil, {ImageColor3 = Library.Theme.Text})
                     end
                 end
             end)
@@ -2160,10 +2160,10 @@ local Library do
                 Instances:Create("UIGradient", {
                     Parent = Items["Indicator"].Instance,
                     Name = "\0",
-                    Rotation = -165,
-                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(208, 208, 208))}
+                    Rotation = 90,
+                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, FromRGB(245, 245, 245)), RGBSequenceKeypoint(1, FromRGB(220, 220, 220))}
                 }):AddToTheme({Color = function()
-                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
+                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, Library.Theme.Gradient), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
                 end})
 
                 Items["Check"] = Instances:Create("ImageLabel", {
@@ -2375,10 +2375,10 @@ local Library do
                     Instances:Create("UIGradient", {
                         Parent = SubItems["NewButton"].Instance,
                         Name = "\0",
-                        Rotation = -165,
-                        Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(208, 208, 208))}
+                        Rotation = 90,
+                        Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, FromRGB(245, 245, 245)), RGBSequenceKeypoint(1, FromRGB(220, 220, 220))}
                     }):AddToTheme({Color = function()
-                        return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
+                        return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, Library.Theme.Gradient), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
                     end})
 
                     Instances:Create("UIStroke", {
@@ -2792,10 +2792,10 @@ local Library do
                 Instances:Create("UIGradient", {
                     Parent = Items["RealDropdown"].Instance,
                     Name = "\0",
-                    Rotation = -165,
-                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(208, 208, 208))}
+                    Rotation = 90,
+                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, FromRGB(245, 245, 245)), RGBSequenceKeypoint(1, FromRGB(220, 220, 220))}
                 }):AddToTheme({Color = function()
-                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
+                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, Library.Theme.Gradient), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
                 end})
 
                 Instances:Create("UIStroke", {
@@ -5051,10 +5051,10 @@ local Library do
                 Instances:Create("UIGradient", {
                     Parent = Items["Background"].Instance,
                     Name = "\0",
-                    Rotation = -165,
-                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(208, 208, 208))}
+                    Rotation = 90,
+                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, FromRGB(245, 245, 245)), RGBSequenceKeypoint(1, FromRGB(220, 220, 220))}
                 }):AddToTheme({Color = function()
-                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
+                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, Library.Theme.Gradient), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
                 end})
 
                 Instances:Create("UIStroke", {
@@ -5247,10 +5247,10 @@ local Library do
                 Instances:Create("UIGradient", {
                     Parent = Items["RealListbox"].Instance,
                     Name = "\0",
-                    Rotation = -165,
-                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, FromRGB(208, 208, 208))}
+                    Rotation = 90,
+                    Color = RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, FromRGB(245, 245, 245)), RGBSequenceKeypoint(1, FromRGB(220, 220, 220))}
                 }):AddToTheme({Color = function()
-                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
+                    return RGBSequence{RGBSequenceKeypoint(0, FromRGB(255, 255, 255)), RGBSequenceKeypoint(0.5, Library.Theme.Gradient), RGBSequenceKeypoint(1, Library.Theme.Gradient)}
                 end})
 
                 Items["List"] = Instances:Create("ScrollingFrame", {
