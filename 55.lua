@@ -1882,8 +1882,8 @@ local Library do
 
                         Library.CurrentPage = SubPage
                     else
-                        Items["Inactive"]:ChangeItemTheme({BackgroundColor3 = "Page Background"})
-                        Items["Inactive"]:Tween(nil, {BackgroundColor3 = Library.Theme["Page Background"], BackgroundTransparency = 1})
+                        Items["Inactive"]:ChangeItemTheme({BackgroundColor3 = "Element"})
+                        Items["Inactive"]:Tween(nil, {BackgroundColor3 = Library.Theme.Element, BackgroundTransparency = 0})
                         if Items["Liner"] then
                             Items["Liner"]:Tween(nil, {BackgroundTransparency = 1})
                         end
