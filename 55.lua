@@ -809,7 +809,11 @@ local Library do
             end
         end
 
-        Library.Font = Font.fromName("GothamSSm")
+        CustomFont:New("Monaco", 400, "Regular", {
+            Url = "https://github.com/sametexe001/luas/raw/refs/heads/main/fonts/Monaco.ttf"
+        })
+
+        Library.Font = CustomFont:Get("Monaco")
     end
 
     Library.Holder = Instances:Create("ScreenGui", {
