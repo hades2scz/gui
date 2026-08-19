@@ -1443,7 +1443,7 @@ local Library do
                         Image = Data.Icon,
                         ImageColor3 = FromRGB(128, 128, 128),
                         BackgroundTransparency = 1,
-                        Position = UDim2New(0.5, 0, 0.35, 0),
+                        Position = UDim2New(0.5, 0, 0.5, 0),
                         AnchorPoint = Vector2New(0.5, 0.5),
                         Size = UDim2New(0, 85, 0, 85),
                         BorderSizePixel = 0,
@@ -1456,7 +1456,7 @@ local Library do
                         Parent = Items["Inactive"].Instance,
                         Name = "\0",
                         AnchorPoint = Vector2New(0.5, 0.5),
-                        Position = UDim2New(0.5, 0, 0.35, 0),
+                        Position = UDim2New(0.5, 0, 0.5, 0),
                         Size = UDim2New(0, 0, 0, 0),
                         BorderSizePixel = 0,
                         BackgroundColor3 = FromRGB(210, 180, 80),
@@ -1481,7 +1481,7 @@ local Library do
                         AnchorPoint = Vector2New(0.5, 0.5),
                         Size = UDim2New(1, 0, 0, 14),
                         BackgroundTransparency = 1,
-                        Position = UDim2New(0.5, 0, 0.92, 0),
+                        Position = UDim2New(0.5, 0, 0.85, 0),
                         BorderSizePixel = 0,
                         AutomaticSize = Enum.AutomaticSize.None,
                         TextSize = 9,
@@ -1535,9 +1535,9 @@ local Library do
                         Parent = Items["Page"].Instance,
                         Name = "\0",
                         BackgroundTransparency = 1,
-                        Position = UDim2New(0, 0, 0, 30),
+                        Position = UDim2New(0, 0, 0, 22),
                         BorderColor3 = FromRGB(42, 49, 45),
-                        Size = UDim2New(1, 0, 1, -30),
+                        Size = UDim2New(1, 0, 1, -22),
                         BorderSizePixel = 0,
                         BackgroundColor3 = FromRGB(255, 255, 255)
                     })
@@ -1768,14 +1768,6 @@ local Library do
                     Name = "\0",
                     PaddingRight = UDimNew(0, 10),
                     PaddingLeft = UDimNew(0, 10)
-                })
-
-                Instances:Create("UIPadding", {
-                    Parent = Items["Inactive"].Instance,
-                    Name = "\0",
-                    PaddingTop = UDimNew(0, 2),
-                    PaddingLeft = UDimNew(0, 18),
-                    PaddingRight = UDimNew(0, 12)
                 })
 
                 Instances:Create("UIPadding", {
@@ -6123,7 +6115,7 @@ local Library do
                 Text = Player.Name,
                 BackgroundTransparency = 1,
                 TextXAlignment = Enum.TextXAlignment.Left,
-                Size = UDim2New(0.3499999940395355, 0, 0, 15),
+                Size = UDim2New(0.33, 0, 0, 15),
                 BorderSizePixel = 0,
                 TextSize = 9,
                 BackgroundColor3 = FromRGB(255, 255, 255)
@@ -6142,7 +6134,7 @@ local Library do
                 AnchorPoint = Vector2New(0.5, 0),
                 BackgroundTransparency = 1,
                 Position = UDim2New(0.5, 0, 0, 0),
-                Size = UDim2New(0.3499999940395355, 0, 0, 15),
+                Size = UDim2New(0.34, 0, 0, 15),
                 BorderSizePixel = 0,
                 TextSize = 9,
                 BackgroundColor3 = FromRGB(255, 255, 255)
@@ -6155,10 +6147,10 @@ local Library do
                 TextColor3 = FromRGB(235, 235, 235),
                 BorderColor3 = FromRGB(0, 0, 0),
                 Text = "Neutral",
-                Size = UDim2New(0.3499999940395355, 0, 0, 15),
+                Size = UDim2New(0.33, 0, 0, 15),
                 BackgroundTransparency = 1,
                 TextXAlignment = Enum.TextXAlignment.Right,
-                Position = UDim2New(0.6499999761581421, 0, 0, 0),
+                Position = UDim2New(0.67, 0, 0, 0),
                 BorderSizePixel = 0,
                 TextSize = 9,
                 BackgroundColor3 = FromRGB(255, 255, 255)
