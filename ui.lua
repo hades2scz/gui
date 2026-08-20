@@ -8,20 +8,113 @@
 ]]
 
 --[[
-    LPH OPTIMIZATION MACROS & DOCUMENTATION
-    Source: https://docs.luarmor.net/insane-optimization-tricks-and-lph-macro-usage
-    
-    This library uses LPH_NO_VIRTUALIZE for performance-critical sections:
-    - RenderStepped/Heartbeat connections
-    - __index/__namecall hooks
-    - Functions called 30+ times per second
-    - While true loops with no delay
-    - GC scan loops
-    
-    DO NOT wrap entire script in LPH_NO_VIRTUALIZE - only use on
-    performance-critical code to avoid defeating obfuscation.
-    
-    Always initialize LPH macros at script start for compatibility.
+    ╔═══════════════════════════════════════════════════════════════════════════╗
+    ║                  INSANE OPTIMIZATION TRICKS & LPH MACRO USAGE             ║
+    ║                                                                           ║
+    ║ Luarmor uses Luraph™️ as the obfuscation provider. If you're experiencing║
+    ║ lags, fps drops, or even crashes, you must use certain "macros" in your  ║
+    ║ script. This documentation shows everything about the LPH_NO_VIRTUALIZE   ║
+    ║ macro.                                                                    ║
+    ║                                                                           ║
+    ║ WHY OBFUSCATION AFFECTS PERFORMANCE:                                      ║
+    ║ Luraph™️ is a VM-based obfuscator that generates custom instructions       ║
+    ║ interpreted by the Luraph VM, which is then interpreted by Lua.          ║
+    ║ Instruction cycles increase exponentially.                               ║
+    ║                                                                           ║
+    ║ Example:                                                                  ║
+    ║ • Normal print: 4 instructions = 4 cycles                                ║
+    ║ • Obfuscated print: 40+ instructions = 40+ cycles                        ║
+    ║                                                                           ║
+    ║ PERFORMANCE IMPACT AT SCALE:                                              ║
+    ║ • Lua is extremely fast, but when code runs hundreds of times/second     ║
+    ║   the impact becomes obvious: lags, fps drops, or freezes                ║
+    ║                                                                           ║
+    ║ Example: RenderStepped with wallhack render function                     ║
+    ║ • Obfuscated: 2000+ instructions per frame                               ║
+    ║ • Per second: 60 frames × 2000 = 120,000+ instruction cycles            ║
+    ║ • Plus local functions increase this exponentially                       ║
+    ║                                                                           ║
+    ║ Example: __index metamethod hook                                          ║
+    ║ • Runs thousands of times per second (game.Workspace, game.Players)     ║
+    ║ • If obfuscated: 1,000,000+ instructions per second                      ║
+    ║ • Result: Game crash due to excessive resource usage                     ║
+    ║                                                                           ║
+    ║ SOLUTION: Use LPH_NO_VIRTUALIZE on performance-critical sections        ║
+    ║                                                                           ║
+    ║ LPH_NO_VIRTUALIZE MACRO RULES:                                            ║
+    ║ • Takes ONE constant argument: a function                                 ║
+    ║ • Returns a function that can be called                                   ║
+    ║ • Excludes that chunk from obfuscation                                    ║
+    ║ • Harder to reverse than loadstring()                                     ║
+    ║                                                                           ║
+    ║ WHERE TO USE LPH_NO_VIRTUALIZE:                                           ║
+    ║ • RenderStepped connections                                               ║
+    ║ • Heartbeat connections                                                   ║
+    ║ • __index hooks                                                           ║
+    ║ • __namecall hooks (optional)                                             ║
+    ║ • While true loops with no delay                                          ║
+    ║ • GC scan loops                                                           ║
+    ║ • Functions called 30+ times per second                                   ║
+    ║                                                                           ║
+    ║ SETUP (add to top of script for compatibility):                           ║
+    ║ ┌─────────────────────────────────────────────────────────────────────┐  ║
+    ║ │ loadstring([[                                                        │  ║
+    ║ │     function LPH_NO_VIRTUALIZE(f) return f end;                     │  ║
+    ║ │ ]])();                                                               │  ║
+    ║ └─────────────────────────────────────────────────────────────────────┘  ║
+    ║                                                                           ║
+    ║ CORRECT USAGE EXAMPLES:                                                  ║
+    ║                                                                           ║
+    ║ ✓ GOOD 1: Direct function in RenderStepped                              ║
+    ║   RunService.RenderStepped(LPH_NO_VIRTUALIZE(function(s)                ║
+    ║       -- regular function body                                           ║
+    ║   end))                                                                  ║
+    ║                                                                           ║
+    ║ ✓ GOOD 2: Assign variable then connect                                  ║
+    ║   local generateTracers = LPH_NO_VIRTUALIZE(function(pos, pos2)         ║
+    ║       -- function body                                                   ║
+    ║   end)                                                                   ║
+    ║   heartbeat:Connect(generateTracers)                                     ║
+    ║                                                                           ║
+    ║ ✓ GOOD 3: Hook metamethod                                               ║
+    ║   old = hookmetamethod(game, "__index", LPH_NO_VIRTUALIZE(function(t, k)║
+    ║       -- regular function body                                           ║
+    ║   end))                                                                  ║
+    ║                                                                           ║
+    ║ ✓ GOOD 4: Immediate invocation                                           ║
+    ║   LPH_NO_VIRTUALIZE(function()                                           ║
+    ║       for i,v in pairs(getgc()) do                                       ║
+    ║           if type(v) == 'table' then                                     ║
+    ║               f = v                                                      ║
+    ║           end                                                            ║
+    ║       end                                                                ║
+    ║   end)()  -- MUST have () to call it                                     ║
+    ║                                                                           ║
+    ║ INCORRECT USAGE EXAMPLES:                                                ║
+    ║                                                                           ║
+    ║ ✗ BAD 1: Passing function reference (not an inline function)            ║
+    ║   local function doSomething() end                                       ║
+    ║   LPH_NO_VIRTUALIZE(doSomething)  -- CAN'T pass references              ║
+    ║   hookfunction(print, doSomething)                                       ║
+    ║                                                                           ║
+    ║ ✗ BAD 2: Invalid syntax inside macro                                     ║
+    ║   LPH_NO_VIRTUALIZE(                                                     ║
+    ║       local old old = hookmetamethod(...)  -- SYNTAX ERROR               ║
+    ║   )                                                                      ║
+    ║                                                                           ║
+    ║ ✗ BAD 3: Missing parentheses to execute                                  ║
+    ║   LPH_NO_VIRTUALIZE(function()  -- This part won't run                   ║
+    ║       print('done')              -- Missing () at the end                ║
+    ║   end)                                                                   ║
+    ║                                                                           ║
+    ║ KEY REMEMBER:                                                             ║
+    ║ 1. ONLY use on performance-critical code (30+ calls per second)          ║
+    ║ 2. DO NOT wrap entire script in it (defeats obfuscation purpose)         ║
+    ║ 3. Always provide inline function, not references                        ║
+    ║ 4. Include setup code at script start                                    ║
+    ║                                                                           ║
+    ║ SOURCE: https://docs.luarmor.net/insane-optimization-tricks-and-lph-macro-usage
+    ╚═══════════════════════════════════════════════════════════════════════════╝
 ]]
 
 -- Safe unload check - only unload if Library is fully initialized
